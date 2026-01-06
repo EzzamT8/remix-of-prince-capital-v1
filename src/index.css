@@ -1,0 +1,388 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Prince Capital Brand Colors - Black & White Premium Theme with Silver Accents */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    
+    /* Silver/White for primary actions - luxurious feel */
+    --primary: 0 0% 85%;
+    --primary-foreground: 0 0% 0%;
+    
+    /* Dark grey for secondary buttons */
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Muted grey for text */
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    
+    /* Card and surfaces */
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    
+    /* Borders - subtle silver */
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 70%;
+    
+    /* Popover */
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    
+    /* Accent - silver tones */
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --radius: 0.75rem;
+    
+    /* Prince Capital specific design tokens */
+    --prince-black: 0 0% 0%;
+    --prince-white: 0 0% 100%;
+    --prince-silver: 0 0% 75%;
+    --prince-silver-light: 0 0% 85%;
+    --prince-grey-100: 0 0% 15%;
+    --prince-grey-400: 0 0% 50%;
+    --prince-grey-600: 0 0% 65%;
+    
+    /* Transitions */
+    --transition-smooth: all 0.2s ease;
+    
+    /* Shadows - subtle silver glow */
+    --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
+    --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+    --shadow-glow: 0 0 40px hsl(0 0% 100% / 0.08), 0 0 20px hsl(0 0% 100% / 0.05);
+    --shadow-large: 0 25px 50px -12px hsl(0 0% 0% / 0.25);
+    
+    /* Gradients - elegant silver */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 85%) 0%, hsl(0 0% 65%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 3%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 20% / 0.3) 0%, hsl(0 0% 5% / 0.1) 100%);
+    --gradient-silver: linear-gradient(135deg, hsl(0 0% 90%) 0%, hsl(0 0% 70%) 100%);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  /* Button variants for Prince Capital */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:opacity-90;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-accent;
+  }
+  
+  .btn-outline {
+    @apply border border-foreground text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-foreground hover:text-background;
+  }
+  
+  /* Typography styles */
+  .heading-hero {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight font-playfair;
+  }
+  
+  .heading-large {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-playfair;
+  }
+  
+  .text-large {
+    @apply text-lg md:text-xl text-muted-foreground;
+  }
+  
+  /* Premium Card Variants */
+  .card-premium {
+    @apply relative overflow-hidden;
+    background: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 3%) 100%);
+    border: 1px solid hsl(0 0% 18%);
+  }
+  
+  .card-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 70% / 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card-premium:hover::before {
+    opacity: 1;
+  }
+  
+  .icon-glow {
+    @apply relative;
+    background: linear-gradient(135deg, hsl(0 0% 90%) 0%, hsl(0 0% 70%) 100%);
+  }
+  
+  .icon-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, hsl(0 0% 90%) 0%, hsl(0 0% 70%) 100%);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card-premium:hover .icon-glow::before {
+    opacity: 0.2;
+  }
+  
+  .btn-card {
+    @apply relative bg-transparent border border-border/50 text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300 overflow-hidden;
+  }
+  
+  .btn-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .btn-card:hover::before {
+    left: 100%;
+  }
+  
+  .btn-card:hover {
+    @apply border-primary/50 text-primary;
+    box-shadow: 0 0 20px hsl(0 0% 100% / 0.1);
+  }
+  
+  /* Premium Header Styles */
+  .header-glass {
+    background: linear-gradient(180deg, hsl(0 0% 5% / 0.95) 0%, hsl(0 0% 2% / 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid hsl(0 0% 18% / 0.5);
+  }
+  
+  .nav-link {
+    @apply relative text-foreground/80 hover:text-foreground transition-all duration-300 font-medium;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(0 0% 75%), hsl(0 0% 95%));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .nav-link:hover {
+    transform: translateY(-1px);
+  }
+  
+  .cta-primary {
+    @apply relative px-8 py-3 font-bold text-black overflow-hidden rounded-lg transition-all duration-300;
+    background: linear-gradient(135deg, hsl(0 0% 95%) 0%, hsl(0 0% 75%) 100%);
+    box-shadow: 0 4px 15px hsl(0 0% 100% / 0.15);
+  }
+  
+  .cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.4), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .cta-primary:hover::before {
+    left: 100%;
+  }
+  
+  .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px hsl(0 0% 100% / 0.2);
+  }
+  
+  .mobile-menu {
+    background: linear-gradient(180deg, hsl(0 0% 8% / 0.95) 0%, hsl(0 0% 3% / 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid hsl(0 0% 18% / 0.5);
+  }
+  
+  .mobile-nav-link {
+    @apply text-foreground/80 hover:text-foreground transition-all duration-300 font-medium py-3 border-l-2 border-transparent hover:border-primary hover:bg-primary/5 pl-4;
+  }
+  
+  /* Enhanced About Section Styles */
+  .hero-stats-container {
+    background: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 2%) 100%);
+    border: 1px solid hsl(0 0% 18%);
+  }
+  
+  .stat-card {
+    @apply relative p-6 rounded-xl transition-all duration-500 hover:-translate-y-2 cursor-pointer;
+    background: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 3%) 100%);
+    border: 1px solid hsl(0 0% 18%);
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 75%), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .stat-card:hover::before {
+    opacity: 1;
+  }
+  
+  .stat-icon {
+    @apply flex items-center justify-center w-14 h-14 rounded-xl mx-auto mb-4 transition-all duration-300;
+    background: linear-gradient(135deg, hsl(0 0% 90%) 0%, hsl(0 0% 70%) 100%);
+  }
+  
+  .stat-icon::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, hsl(0 0% 90%) 0%, hsl(0 0% 70%) 100%);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .stat-card:hover .stat-icon {
+    transform: scale(1.1);
+  }
+  
+  .stat-card:hover .stat-icon::before {
+    opacity: 0.3;
+  }
+  
+  .stat-value {
+    @apply text-4xl font-bold mb-2 font-playfair;
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 70%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .enhanced-image-container {
+    @apply relative overflow-hidden rounded-2xl;
+  }
+  
+  .enhanced-image-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(0 0% 100% / 0.05) 0%, transparent 50%, hsl(0 0% 100% / 0.02) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .enhanced-image-container::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, hsl(0 0% 80%) 0%, hsl(0 0% 50%) 100%);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0.15;
+  }
+  
+  /* Silver accent text */
+  .text-silver {
+    color: hsl(0 0% 75%);
+  }
+  
+  .text-silver-light {
+    color: hsl(0 0% 85%);
+  }
+  
+  /* Silver gradient text */
+  .gradient-text-silver {
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 70%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
