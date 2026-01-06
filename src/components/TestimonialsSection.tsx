@@ -58,7 +58,7 @@ const TestimonialsSection = () => {
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 * i, duration: 0.3 }}
                     >
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star className="w-4 h-4 fill-primary text-primary" />
                     </motion.div>
                   ))}
                 </div>

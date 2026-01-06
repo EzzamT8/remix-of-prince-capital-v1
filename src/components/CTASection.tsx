@@ -50,9 +50,9 @@ const CTASection = () => {
         <FadeInUp delay={0.3}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-              <Button className="btn-primary" onClick={() => navigate('/#application')}>
+              <Button className="cta-primary group" onClick={() => navigate('/#application')}>
                 Apply Now
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </motion.div>
           </div>

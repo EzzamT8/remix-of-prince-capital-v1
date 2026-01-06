@@ -1,22 +1,53 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
-import logo from '@/assets/prince-capital-logo.png';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const fundingProducts = [
+    { name: 'Working Capital', path: '/working-capital' },
+    { name: 'Revenue Based Funding', path: '/revenue-based-funding' },
+    { name: 'Equipment Financing', path: '/equipment-financing' },
+    { name: 'Invoice Factoring', path: '/invoice-factoring' },
+    { name: 'SBA Loans', path: '/sba-loans' },
+    { name: 'Strategic Financing', path: '/strategic-financing' },
+    { name: 'Real Estate Financing', path: '/real-estate-financing' },
+    { name: 'Business Lines of Credit', path: '/business-lines-of-credit' },
+  ];
   
-  const handleNavClick = (hash: string) => {
-    if (location.pathname !== '/') {
-      window.location.href = `/${hash}`;
-    } else {
-      document.querySelector(hash)?.scrollIntoView({
-        behavior: 'smooth'
-      });
+  const handleNavClick = (target: string) => {
+    setIsMenuOpen(false); // Close mobile menu on click
+    if (target.startsWith('/')) {
+      // It's a route, use navigate
+      navigate(target);
+    } else if (target.startsWith('#')) {
+      // It's an anchor on the current page
+      if (location.pathname !== '/') {
+        // If not on homepage, navigate to homepage and then scroll
+        navigate('/').then(() => {
+          const section = document.querySelector(target);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      } else {
+        // Already on homepage, just scroll
+        const section = document.querySelector(target);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
-    setIsMenuOpen(false);
   };
   
   return (
@@ -25,19 +56,28 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-all duration-300 hover:scale-105">
-            <img src={logo} alt="Prince Capital logo" className="h-24 w-auto" />
+            <span className="text-2xl font-bold text-foreground font-playfair">Prince Capital</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-10">
-            <button onClick={() => handleNavClick('#products')} className="nav-link">
-              Funding Products
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="nav-link group flex items-center">
+                Funding Solutions <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {fundingProducts.map((product) => (
+                  <DropdownMenuItem key={product.path} onClick={() => handleNavClick(product.path)}>
+                    {product.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button onClick={() => handleNavClick('#about')} className="nav-link">
               About Us
             </button>
-            <button onClick={() => handleNavClick('#testimonials')} className="nav-link">
-              Success Stories
+            <button onClick={() => handleNavClick('/contact')} className="nav-link">
+              Contact
             </button>
             <button onClick={() => handleNavClick('#apply')} className="nav-link">
               Apply Now
@@ -64,14 +104,23 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mobile-menu py-6 animate-fade-in">
             <nav className="flex flex-col space-y-2">
-              <button onClick={() => handleNavClick('#products')} className="mobile-nav-link">
-                Funding Products
-              </button>
+              <span className="mobile-nav-link font-semibold text-muted-foreground pt-4 pb-2">
+                Funding Solutions
+              </span>
+              {fundingProducts.map((product) => (
+                <button 
+                  key={`mobile-${product.path}`} 
+                  onClick={() => handleNavClick(product.path)} 
+                  className="mobile-nav-link pl-8" // Indent for sub-item feel
+                >
+                  {product.name}
+                </button>
+              ))}
               <button onClick={() => handleNavClick('#about')} className="mobile-nav-link">
                 About Us
               </button>
-              <button onClick={() => handleNavClick('#testimonials')} className="mobile-nav-link">
-                Success Stories
+              <button onClick={() => handleNavClick('/contact')} className="mobile-nav-link">
+                Contact
               </button>
               <button onClick={() => handleNavClick('#apply')} className="mobile-nav-link">
                 Apply Now

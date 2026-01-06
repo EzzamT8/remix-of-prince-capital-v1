@@ -22,6 +22,9 @@ import CookiePolicyPage from "./pages/CookiePolicyPage";
 import CompliancePage from "./pages/CompliancePage";
 import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
+import BlogPage from "./pages/BlogPage"; // New import
+import ResourcesPage from "./pages/ResourcesPage"; // New import
+import SupportPage from "./pages/SupportPage"; // New import
 
 const queryClient = new QueryClient();
 
@@ -46,6 +49,9 @@ const AnimatedRoutes = () => {
         <Route path="/compliance" element={<PageTransition><CompliancePage /></PageTransition>} />
         <Route path="/faq" element={<PageTransition><FAQPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/blog" element={<PageTransition><BlogPage /></PageTransition>} /> {/* New route */}
+        <Route path="/resources" element={<PageTransition><ResourcesPage /></PageTransition>} /> {/* New route */}
+        <Route path="/support" element={<PageTransition><SupportPage /></PageTransition>} /> {/* New route */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
